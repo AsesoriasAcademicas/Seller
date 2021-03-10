@@ -1,0 +1,144 @@
+<div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <!--Creamos una referencia de tipo ngForm y se ejecuta al método addEmployee cuando se envíe el formulario, vinculándolo con esta función-->
+                <form [formGroup]="form" (ngSubmit)="addPersona(form)" *ngIf="isDisplayed==false">
+                    <div div="form-group">
+                        <input type="hidden" class="form-control" formControlName="_id">
+                    </div>
+
+                    <div class="form-group">
+                        <!--Con la directiva ngModel asociamos el input al valor de la propiedad name del empleado del servicio-->
+                        <!--Actualizaremos nuestros campos con la etiqueta formControlName, la cual atiende a los cambios en el valor del control-->
+                        <input type="text" class="form-control" formControlName="identificacion" placeholder="Enter your ID" [ngClass]="{'is-invalid': submitted && validacion.identificacion.errors}" />
+                        <div *ngIf="submitted && validacion.identificacion.errors" class="invalid-feedback">
+                            <div *ngIf="validacion.identificacion.errors.required" class="div">Por favor ingrese el documento del empleado.</div>
+                            <div *ngIf="validacion.identificacion.errors.pattern" class="div">Por favor ingrese un documento válido.</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" formControlName="nombre" placeholder="Enter your name" [ngClass]="{'is-invalid': submitted && validacion.nombre.errors}" />
+                        <div *ngIf="submitted && validacion.nombre.errors" class="invalid-feedback">
+                            <div *ngIf="validacion.nombre.errors.required" class="div">Por favor ingrese el nombre del empleado.</div>
+                            <div *ngIf="validacion.nombre.errors.pattern" class="div">Por favor ingrese un nombre válido.</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" formControlName="apellidos" placeholder="Enter your lastname" [ngClass]="{'is-invalid': submitted && validacion.apellidos.errors}" />
+                        <div *ngIf="submitted && validacion.apellidos.errors" class="invalid-feedback">
+                            <div *ngIf="validacion.apellidos.errors.required" class="div">Por favor ingrese el apellido del empleado.</div>
+                            <div *ngIf="validacion.apellidos.errors.pattern" class="div">Por favor ingrese un apellido válido.</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" formControlName="email" placeholder="Enter your email" [ngClass]="{'is-invalid': submitted && validacion.email.errors}" />
+                        <div *ngIf="submitted && validacion.email.errors" class="invalid-feedback">
+                            <div *ngIf="validacion.email.errors.required" class="div">Por favor ingrese el email del empleado.</div>
+                            <div *ngIf="validacion.email.errors.email" class="div">Por favor ingrese un email válido.</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="date" class="form-control" formControlName="fechaNac" placeholder="Enter your borning date" [ngClass]="{'is-invalid': submitted && validacion.fechaNac.errors}" />
+                        <div *ngIf="submitted && validacion.fechaNac.errors" class="invalid-feedback">
+                            <div *ngIf="validacion.fechaNac.errors.required" class="div">Por favor ingrese la fecha de nacimiento del empleado.</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" formControlName="telefono" placeholder="Enter your telephone" [ngClass]="{'is-invalid': submitted && validacion.telefono.errors}" />
+                        <div *ngIf="submitted && validacion.telefono.errors" class="invalid-feedback">
+                            <div *ngIf="validacion.telefono.errors.required" class="div">Por favor ingrese el teléfono del empleado.</div>
+                            <div *ngIf="validacion.telefono.errors.pattern" class="div">Por favor ingrese un teléfono válido.</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" formControlName="direccion" placeholder="Enter your adress" [ngClass]="{'is-invalid': submitted && validacion.direccion.errors}" />
+                        <div *ngIf="submitted && validacion.direccion.errors" class="invalid-feedback">
+                            <div *ngIf="validacion.direccion.errors.required" class="div">Por favor ingrese la dirección del empleado.</div>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary m-2" (click)="resetForm(form)">Clean</button>
+                    <button class="btn btn-secundary">Next</button>
+                </form>
+
+                <form [formGroup]="formEmpleado" (ngSubmit)="addEmployee(formEmpleado)" *ngIf="isDisplayed==true">
+                    <input type="hidden" name="_id" formControlName="_id">
+
+                    <div class="form-name">
+                        <!--Con la directiva ngModel asociamos el input al valor de la propiedad name del empleado del servicio-->
+                        <input type="text" class="form-control" formControlName="usuario" placeholder="Enter your Username" [ngClass]="{'is-invalid': submitted && validacionEmpleado.usuario.errors}" />
+                        <div *ngIf="submitted && validacionEmpleado.usuario.errors" class="invalid-feedback">
+                            <div *ngIf="validacionEmpleado.usuario.errors.required" class="div">Por favor ingrese el usuario del empleado.</div>
+                            <div *ngIf="validacionEmpleado.usuario.errors.pattern" class="div">Por favor ingrese un usuario válido.</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" formControlName="contrasenia" placeholder="Enter your Password" [ngClass]="{'is-invalid': submitted && validacionEmpleado.contrasenia.errors}" />
+                        <div *ngIf="submitted && validacionEmpleado.contrasenia.errors" class="invalid-feedback">
+                            <div *ngIf="validacionEmpleado.contrasenia.errors.required" class="div">Por favor ingrese el contraseña del empleado.</div>
+                            <div *ngIf="validacionEmpleado.contrasenia.errors.pattern" class="div">Por favor ingrese una contraseña válida.</div>
+                            <div *ngIf="validacionEmpleado.contrasenia.errors.pattern" class="div">Una constraseña válida debe contener entre 8 y 15 caracteres.</div>
+                            <div *ngIf="validacionEmpleado.contrasenia.errors.pattern" class="div">Una constraseña válida debe contener al menos un digito.</div>
+                            <div *ngIf="validacionEmpleado.contrasenia.errors.pattern" class="div">Una constraseña válida debe contener al menos una letra en mayúscula.</div>
+                            <div *ngIf="validacionEmpleado.contrasenia.errors.pattern" class="div">Una constraseña válida debe contener al menos una letra en minúscula.</div>
+                            <div *ngIf="validacionEmpleado.contrasenia.errors.pattern" class="div">Una constraseña válida debe contener al menos un caracter especial ($@$!%*?&).</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <!--<input type="text" class="form-control" name="tipoEmpleado" placeholder="Enter your TypeEmployee" [(ngModel)]="employeeService.selectedEmployee.tipoEmpleado" />-->
+                        <select name="tipoEmpleado" class="form-control" formControlName="tipoEmpleado">
+                            <option *ngFor="let tipo of tipoEmpleado" [value]="tipo">{{ tipo }}</option>
+                        </select>
+                    </div>
+
+                    <button class="btn btn-primary m-2" (click)="resetForm(formEmpleado)">Clean</button>
+                    <button class="btn btn-secundary">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="form-group">
+            <input type="text" matInput class="form-control" name="filterPost" placeholder="Search..." [(ngModel)]="filterPost">
+        </div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Identificación</th>
+                    <th>Nombre</th>
+                    <th>Telefono</th>
+                    <th>Dirección</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!--En el template de un componente, es posible acceder al servicio, para mostrar sus propiedades e
+                    incluso invocar sus métodos como respuesta a un evento-->
+                <!--Aquí es donde hacemos uso de la pipe filter, donde pasamos el array de personas como argumento-->
+                <tr *ngFor="let persona of personaService.personas | filter:filterPost">
+                    <td>{{ persona.identificacion }}</td>
+                    <td>{{ persona.nombre }} {{ persona.apellidos }}</td>
+                    <td>{{ persona.telefono }}</td>
+                    <td>{{ persona.direccion }}</td>
+                    <td>
+                        <button class="btn btn-secundary btn-sm" (click)="editPersona(persona)">
+              <i class="material-icons">edit</i>
+            </button>
+                        <button class="btn btn-danger btn-sm" (click)="deletePersona(persona._id)">
+              <i class="material-icons">delete</i>
+            </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

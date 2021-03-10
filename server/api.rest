@@ -1,0 +1,85 @@
+###
+GET http://localhost:4000/api/employees
+###
+POST http://localhost:4000/api/employees/603b11bfecff521968fe9efc
+Content-Type: application/json
+
+{
+    "usuario": "John",
+    "contrasenia": "contrasenia",
+    "tipoEmpleado": "vendedor"
+}
+
+###
+GET http://localhost:4000/api/employees/602f31779d10ec3484d1c376
+
+###
+DELETE http://localhost:4000/api/employees/602f31779d10ec3484d1c376
+
+###
+PUT http://localhost:4000/api/employees/602f31779d10ec3484d1c376
+Content-Type: application/json
+
+{
+    "salary": "1800000"
+}
+
+
+
+###
+GET http://localhost:4000/api/productos
+
+###
+POST http://localhost:4000/api/productos
+Content-Type: application/json
+
+{
+    "codigo": "ARROZCARO",
+    "nombre": "Arroz Carolina",
+    "detalle": "Arroz Carolina x lb",
+    "cantidad": "30",
+    "precioUnitario": 1600,
+    "tipoVenta": "libra"
+}
+
+###
+GET http://localhost:4000/api/productos/60347689d7079b3b90004449
+
+###
+PUT http://localhost:4000/api/productos/60347689d7079b3b90004449
+Content-Type: application/json
+
+{
+    "precioUnitario": 1500
+}
+
+###
+DELETE http://localhost:4000/api/productos/60454897d759d91ebc6d16b6
+
+###
+PUT http://localhost:4000/api/personas/604240a204e1400e1015adc0
+Content-Type: application/json
+
+{
+    "nombre": "Carlos Esteban"
+}
+
+###
+GET http://localhost:4000/api/personas
+
+###
+POST http://localhost:4000/api/personas
+Content-Type: application/json
+
+{
+    "identificacion": "1061724030",
+    "nombre": "Juan Esteban",
+    "apellidos": "Hernandez",
+    "email": "90jalexhernandez09@gmail.com",
+    "fechaNac": "12/12/1989",
+    "telefono": "3137632643",
+    "direccion": "Cra 18 # 3-04"
+  }
+
+###
+GET http://localhost:4000/api/ventas

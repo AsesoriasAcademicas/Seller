@@ -1,0 +1,57 @@
+<div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <!--Creamos una referencia de tipo ngForm y se ejecuta al método addEmployee cuando se envíe el formulario, vinculándolo con esta función-->
+                <form #employeForm="ngForm" (ngSubmit)="addEmployee(employeForm)">
+                    <input type="hidden" name="_id" [(ngModel)]="employeeService.selectedEmployee._id">
+
+                    <div class="form-name">
+                        <!--Con la directiva ngModel asociamos el input al valor de la propiedad name del empleado del servicio-->
+                        <input type="text" class="form-control" name="usuario" placeholder="Enter your Username" [(ngModel)]="employeeService.selectedEmployee.usuario" />
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="contrasenia" placeholder="Enter your Password" [(ngModel)]="employeeService.selectedEmployee.contrasenia" />
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="tipoEmpleado" placeholder="Enter your TypeEmployee" [(ngModel)]="employeeService.selectedEmployee.tipoEmpleado" />
+                    </div>
+
+                    <button class="btn btn-primary m-2" (click)="resetForm(employeForm)">Clean</button>
+                    <button class="btn btn-secundary">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Usuario</th>
+                    <th>Constrasenia</th>
+                    <th>TipoEmpleado</th>
+                    <th>Operations</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!--En el template de un componente, es posible acceder al servicio, para mostrar sus propiedades e
+                    incluso invocar sus métodos como respuesta a un evento-->
+                <tr *ngFor="let employe of employeeService.employes">
+                    <td>{{ employe.usuario }}</td>
+                    <td>{{ employe.contrasenia }}</td>
+                    <td>{{ employe.tipoEmpleado }}</td>
+                    <td>
+                        <button class="btn btn-secundary btn-sm" (click)="editEmployee(employe)">
+              <i class="material-icons">edit</i>
+            </button>
+                        <button class="btn btn-danger btn-sm" (click)="deleteEmployee(employe._id)">
+              <i class="material-icons">delete</i>
+            </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

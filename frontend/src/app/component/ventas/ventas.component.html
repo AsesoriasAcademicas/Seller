@@ -1,0 +1,88 @@
+<div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <form [formGroup]="form" (ngSubmit)="addVenta(form)">
+                    <input type="hidden" class="form-control" formControlName="_id">
+                    <div class="form-group">
+                        <input type="text" class="form-control" formControlName="codigo" placeholder="Ingrese el codigo" [ngClass]="{'is-invalid': submitted && validacion.codigo.errors}" />
+                        <div *ngIf="submitted && validacion.codigo.errors" class="invalid-feedback">
+                            <div *ngIf="validacion.codigo.errors.required" class="div">Por favor ingrese el código del producto.</div>
+                            <div *ngIf="validacion.codigo.errors.pattern" class="div">Por favor ingrese un código válido.</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" formControlName="nombre" placeholder="Ingrese el nombre" [ngClass]="{'is-invalid': submitted && validacion.nombre.errors}" />
+                        <div *ngIf="submitted && validacion.nombre.errors" class="invalid-feedback">
+                            <div *ngIf="validacion.nombre.errors.required" class="div">Por favor ingrese el nombre del producto.</div>
+                            <div *ngIf="validacion.nombre.errors.pattern" class="div">Por favor ingrese un nombre válido.</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" formControlName="detalle" placeholder="Ingrese el detalle" [ngClass]="{'is-invalid': submitted && validacion.detalle.errors}" />
+                        <div *ngIf="submitted && validacion.detalle.errors" class="invalid-feedback">
+                            <div *ngIf="validacion.detalle.errors.required" class="div">Por favor ingrese el detalle del producto.</div>
+                            <div *ngIf="validacion.detalle.errors.pattern" class="div">Por favor ingrese un detalle válido.</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="number" class="form-control" formControlName="precioUnitario" placeholder="Ingrese el precio unitario" [ngClass]="{'is-invalid': submitted && validacion.precioUnitario.errors}" />
+                        <div *ngIf="submitted && validacion.precioUnitario.errors" class="invalid-feedback">
+                            <div *ngIf="validacion.precioUnitario.errors.required" class="div">Por favor ingrese el precio del producto.</div>
+                            <div *ngIf="validacion.precioUnitario.errors.pattern" class="div">Por favor ingrese un precio válido.</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="number" class="form-control" formControlName="cantidad" placeholder="Ingrese la cantidad del producto" [ngClass]="{'is-invalid': submitted && validacion.cantidad.errors}">
+                        <div *ngIf="submitted && validacion.cantidad.errors" class="invalid-feedback">
+                            <div *ngIf="validacion.cantidad.errors.required" class="div">Por favor ingrese la cantidad del producto.</div>
+                            <div *ngIf="validacion.cantidad.errors.pattern" class="div">Por favor ingrese una cantidad válido.</div>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary m-2" (click)="resetForm(form)">
+                        Limpiar
+                      </button>
+                    <button class="btn btn-secundary">Guardar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Codigo</th>
+                    <th>Nombre</th>
+                    <th>Detalle</th>
+                    <th>Cantidad</th>
+                    <th>Precio Unitario</th>
+                    <th>Precio Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let venta of ventaService.ventas">
+                    <td>Codigo</td>
+                    <td>Nombre</td>
+                    <td>Detalle</td>
+                    <td>{{ venta.cantidad }}</td>
+                    <td>Precio Unitario</td>
+                    <td>{{ venta.precioTotal }}</td>
+                    <td>
+                        <button class="btn btn-secundary btn-sm">
+                            <i class="material-icons">edit</i>
+                          </button>
+                        <button class="btn btn-danger btn-sm">
+                            <i class="material-icons">delete</i>
+                          </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <button class="btn btn-secundary" (click)="openDialog()">Agregar</button>
+    </div>
+</div>

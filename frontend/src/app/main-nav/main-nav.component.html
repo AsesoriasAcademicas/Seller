@@ -1,0 +1,34 @@
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === true">
+        <mat-toolbar>Menu</mat-toolbar>
+        <mat-nav-list>
+            <!--<a mat-list-item routerLink="#">Ventas</a>-->
+            <a mat-list-item routerLink="productos">Productos</a>
+            <!--<a mat-list-item routerLink="#">Compras</a>-->
+            <a mat-list-item routerLink="personas">Empleados</a>
+            <!--<a mat-list-item routerLink="#">Clientes</a>
+            <a mat-list-item routerLink="#">Proveedores</a>
+            <a mat-list-item routerLink="#">Estadísticas</a>-->
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <mat-toolbar color="primary">
+            <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+            <mat-toolbar color="primary">
+                <span>SELLER</span>
+                <span class="example-spacer"></span>
+                <button mat-icon-button class="example-icon favorite-icon " aria-label="Example icon-button with heart icon " (click)="drawer.toggle()">
+                    <mat-icon>build</mat-icon>
+                </button>
+                <button mat-icon-button class="example-icon " aria-label="Example icon-button with share icon ">
+                    <mat-icon>login</mat-icon>
+                </button>
+            </mat-toolbar>
+
+        </mat-toolbar>
+        <!-- La directiva <router-outlet> inyecta un componente u otro dependiendo de la ruta elegida-->
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>
