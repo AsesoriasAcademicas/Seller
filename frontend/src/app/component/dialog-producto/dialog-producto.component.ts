@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ProductoService } from '../../services/producto.service';
 import { producto } from '../../models/producto';
+import { formatCurrency } from '@angular/common';
 
 @Component({
   selector: 'app-dialog-producto',
@@ -31,7 +32,7 @@ export class DialogProductoComponent implements OnInit {
   }
 
   sellProducto(){
-    this.productoService.selectedProducto = this.shoppingCart[0];
+    this.productoService.selectedProductos = this.shoppingCart;
   }
 
 }

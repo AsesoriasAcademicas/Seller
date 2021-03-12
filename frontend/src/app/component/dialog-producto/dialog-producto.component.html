@@ -29,6 +29,6 @@
             </tbody>
         </table>
         <button class="btn btn-primary m-2">Clean</button>
-        <button class="btn btn-secundary" (click)="sellProducto()">Save</button>
+        <button mat-button [mat-dialog-close]="productoService.productos" class="btn btn-secundary" (click)="sellProducto()">Save</button>
     </div>
 </div>

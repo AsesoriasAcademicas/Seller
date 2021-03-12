@@ -20,6 +20,8 @@ export class ProductoService {
     tipoVenta: ''
   };
 
+  selectedProductos : producto[];
+
   productos : producto[];
 
   getProducto(_id: string){

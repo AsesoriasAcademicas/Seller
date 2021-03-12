@@ -4,7 +4,6 @@ import { VentaService } from '../../services/venta.service';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { DialogProductoComponent } from '../dialog-producto/dialog-producto.component';
 import { ProductoService } from '../../services/producto.service';
-import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-ventas',
@@ -40,7 +39,8 @@ export class VentasComponent implements OnInit {
   openDialog(){
     this.productoUpload = this.dialog.open(DialogProductoComponent);
     this.productoUpload.afterClosed().subscribe((res) => {
-      this.form.patchValue(this.productoService.selectedProducto);
+      console.log(this.productoService.selectedProductos[0]);
+      this.form.patchValue(this.productoService.selectedProductos[0]);
     })
   }
 
