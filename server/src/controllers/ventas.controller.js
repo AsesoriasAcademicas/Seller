@@ -1,13 +1,14 @@
 var ventas = {};
 var Venta = require('../models/Venta');
+var Producto = require('../models/Producto');
 
 ventas.getVentas = async(req, res) => {
     try {
-        var ventas = await Venta.find();
-        if (res.status(200)) {
-            res.status(200).json(ventas);
-        }
-
+        await Venta.find().populate('producto').exec((err, ventas) => {
+            if (res.status(200)) {
+                res.status(200).json(ventas);
+            }
+        });
     } catch (error) {
         if (res.status(500)) {
             res.status(500).send({
@@ -40,7 +41,12 @@ ventas.getVentas = async(req, res) => {
 
 ventas.createVenta = async(req, res) => {
     try {
-        var newVenta = new Venta(req.body);
+        var newVenta = new Venta();
+        var { cantidad, precioTotal } = new Venta(req.body);
+        newVenta.cantidad = cantidad;
+        newVenta.precioTotal = precioTotal;
+        var producto = await Producto.findOne({ '_id': req.params.id });
+        newVenta.producto = producto;
         await newVenta.save();
         if (res.status(200)) {
             res.status(200).send({

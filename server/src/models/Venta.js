@@ -1,9 +1,9 @@
 var { Schema, model, version } = require('mongoose');
 
 var ventaSchema = new Schema({
-    producto: { type: Schema.Types.ObjectId, ref: 'producto' },
     cantidad: { type: Number, require: true },
-    precioTotal: { type: Number, require: true }
+    precioTotal: { type: Number, require: true },
+    producto: { type: Schema.Types.ObjectId, ref: 'producto' }
 
 }, {
     timestamps: true,

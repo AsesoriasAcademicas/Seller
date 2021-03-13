@@ -45,8 +45,8 @@
                     </div>
 
                     <button class="btn btn-primary m-2" (click)="resetForm(form)">
-                        Limpiar
-                      </button>
+                            Limpiar
+                          </button>
                     <button class="btn btn-secundary">Guardar</button>
                 </form>
             </div>
@@ -66,17 +66,17 @@
             </thead>
             <tbody>
                 <tr *ngFor="let venta of ventaService.ventas">
-                    <td>Codigo</td>
-                    <td>Nombre</td>
-                    <td>Detalle</td>
+                    <td>{{ venta.producto.codigo }}</td>
+                    <td>{{ venta.producto.nombre }}</td>
+                    <td>{{ venta.producto.detalle }}</td>
                     <td>{{ venta.cantidad }}</td>
-                    <td>Precio Unitario</td>
+                    <td>{{ venta.producto.precioUnitario }}</td>
                     <td>{{ venta.precioTotal }}</td>
                     <td>
-                        <button class="btn btn-secundary btn-sm">
+                        <button class="btn btn-secundary btn-sm" (click)="editVenta(venta)">
                             <i class="material-icons">edit</i>
                           </button>
-                        <button class="btn btn-danger btn-sm">
+                        <button class="btn btn-danger btn-sm" (click)="deleteVenta(venta._id)">
                             <i class="material-icons">delete</i>
                           </button>
                     </td>

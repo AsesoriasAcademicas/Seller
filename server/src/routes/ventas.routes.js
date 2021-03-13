@@ -4,7 +4,7 @@ var ventaController = require('../controllers/ventas.controller');
 
 routerVenta.get('/', ventaController.getVentas);
 
-routerVenta.post('/', ventaController.createVenta);
+routerVenta.post('/:id', ventaController.createVenta);
 
 routerVenta.get('/:id', ventaController.getVenta);
 

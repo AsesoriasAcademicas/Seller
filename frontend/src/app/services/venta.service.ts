@@ -9,6 +9,11 @@ export class VentaService {
 
   constructor(public http: HttpClient) { }
 
+  selectedVenta: venta = {
+    cantidad: 0,
+    precioTotal: 0
+  };
+
   URL_API = 'http://localhost:4000/api/ventas';
 
   ventas: venta[];
@@ -21,8 +26,8 @@ export class VentaService {
     return this.http.get<venta[]>(this.URL_API);
   }
 
-  createVenta(venta: venta){
-    return this.http.post(this.URL_API, venta);
+  createVenta(venta: venta, _id: string){
+    return this.http.post(`${this.URL_API}/${_id}`, venta);
   }
 
   deleteVenta(_id: String){

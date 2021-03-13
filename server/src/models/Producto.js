@@ -12,4 +12,4 @@ var productoSchema = new Schema({
     versionKey: false
 });
 
-module.exports = model('Producto', productoSchema);
+module.exports = model('producto', productoSchema);
