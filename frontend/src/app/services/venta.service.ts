@@ -10,6 +10,10 @@ export class VentaService {
   constructor(public http: HttpClient) { }
 
   selectedVenta: venta = {
+    codigo : '',
+    nombre: '',
+    detalle: '',
+    precioUnitario: 0,
     cantidad: 0,
     precioTotal: 0
   };

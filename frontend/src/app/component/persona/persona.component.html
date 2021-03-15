@@ -64,8 +64,8 @@
                         </div>
                     </div>
 
-                    <button class="btn btn-primary m-2" (click)="resetForm(form)">Clean</button>
-                    <button class="btn btn-secundary">Next</button>
+                    <button class="btn btn-primary m-2" (click)="resetForm(form)">Limpiar</button>
+                    <button class="btn btn-secundary">Siguiente</button>
                 </form>
 
                 <form [formGroup]="formEmpleado" (ngSubmit)="addEmployee(formEmpleado)" *ngIf="isDisplayed==true">
@@ -100,8 +100,8 @@
                         </select>
                     </div>
 
-                    <button class="btn btn-primary m-2" (click)="resetForm(formEmpleado)">Clean</button>
-                    <button class="btn btn-secundary">Save</button>
+                    <button class="btn btn-primary m-2" (click)="resetForm(formEmpleado)">Limpiar</button>
+                    <button class="btn btn-secundary">Guardar</button>
                 </form>
             </div>
         </div>

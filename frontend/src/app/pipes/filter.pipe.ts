@@ -17,8 +17,12 @@ export class FilterPipe implements PipeTransform {
     if (arg === '' || arg.length < 3) return value;
     var resultPosts = [];
     for (var post of value) {
-      if (post.identificacion.toLowerCase().indexOf(arg.toLowerCase()) > -1 || post.nombre.toLowerCase().indexOf(arg.toLowerCase()) > -1
-      || post.telefono.toLowerCase().indexOf(arg.toLowerCase()) > -1 || post.direccion.toLowerCase().indexOf(arg.toLowerCase()) > -1) {
+      if (typeof post.identificacion !== 'undefined' && post.identificacion.toLowerCase().indexOf(arg.toLowerCase()) > -1 || typeof post.nombre !== 'undefined' && post.nombre.toLowerCase().indexOf(arg.toLowerCase()) > -1
+      || typeof post.telefono !== 'undefined' && post.telefono.toLowerCase().indexOf(arg.toLowerCase()) > -1 || typeof post.direccion !== 'undefined' && post.direccion.toLowerCase().indexOf(arg.toLowerCase()) > -1) {
+        resultPosts.push(post);
+      } else if(typeof post.codigo !== 'undefined' && post.codigo.toLowerCase().indexOf(arg.toLowerCase()) > -1 || typeof post.nombre !== 'undefined' && post.nombre.toLowerCase().indexOf(arg.toLowerCase()) > -1
+      || typeof post.detalle !== 'undefined' && post.detalle.toLowerCase().indexOf(arg.toLowerCase()) > -1 || typeof post.cantidad !== 'undefined' && post.cantidad.toString().toLowerCase().indexOf(arg.toLowerCase()) > -1
+      || typeof post.precioUnitario !== 'undefined' && post.precioUnitario.toString().toLowerCase().indexOf(arg.toLowerCase()) > -1 || typeof post.tipoVenta !== 'undefined' && post.tipoVenta.toLowerCase().indexOf(arg.toLowerCase()) > -1){
         resultPosts.push(post);
       };
     };

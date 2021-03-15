@@ -5,6 +5,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { DialogProductoComponent } from '../dialog-producto/dialog-producto.component';
 import { ProductoService } from '../../services/producto.service';
 import { venta } from '../../models/venta';
+import { producto } from '../../models/producto';
 
 @Component({
   selector: 'app-ventas',
@@ -12,6 +13,8 @@ import { venta } from '../../models/venta';
   styleUrls: ['./ventas.component.css']
 })
 export class VentasComponent implements OnInit {
+
+  totalVenta: Number = 0;
 
   form: FormGroup;
 
@@ -40,7 +43,6 @@ export class VentasComponent implements OnInit {
   openDialog(){
     this.productoUpload = this.dialog.open(DialogProductoComponent);
     this.productoUpload.afterClosed().subscribe((res) => {
-      console.log(this.productoService.selectedProductos);
       this.form.patchValue(this.productoService.selectedProductos[0]);
     })
   }
@@ -48,7 +50,6 @@ export class VentasComponent implements OnInit {
   getVentas(){
     this.ventaService.getVentas().subscribe(
       (res) => {
-        console.log(res);
         this.ventaService.ventas = res;
       },
       (err) => console.error(err)
@@ -61,6 +62,7 @@ export class VentasComponent implements OnInit {
 
   addVenta(form: FormGroup){
     form.value.precioTotal = form.value.precioUnitario * form.value.cantidad;
+    this.totalVenta += form.value.precioTotal;
     this.ventaService.createVenta(form.value, form.value._id).subscribe(
       (res) => {
         this.getVentas();
@@ -70,9 +72,12 @@ export class VentasComponent implements OnInit {
     )
   }
 
-  deleteVenta(id: string){
+  deleteVenta(venta: venta){
     if(confirm('Are you sure you want to delete it?')) {
-      this.ventaService.deleteVenta(id).subscribe(
+      if(this.totalVenta > 0){
+        this.totalVenta = Number(this.totalVenta) - Number(venta.precioTotal);
+      }
+      this.ventaService.deleteVenta(venta._id).subscribe(
         (res) => {
           this.getVentas();
         },

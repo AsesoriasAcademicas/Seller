@@ -15,7 +15,7 @@ export class ProductoService {
     codigo : '',
     nombre: '',
     detalle: '',
-    cantidad: 0,
+    stock: 0,
     precioUnitario: 0,
     tipoVenta: ''
   };

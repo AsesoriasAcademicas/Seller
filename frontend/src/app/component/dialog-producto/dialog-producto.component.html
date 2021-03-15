@@ -1,22 +1,25 @@
 <div class="row">
     <div class="col">
+        <div class="form-group">
+            <input type="text" matInput class="form-control" name="filterPost" placeholder="Search..." [(ngModel)]="filterPost">
+        </div>
         <table class="table table-striped">
             <thead>
                 <tr>
                     <th>Codigo</th>
                     <th>Nombre</th>
                     <th>Detalle</th>
-                    <th>Cantidad</th>
+                    <th>Stock</th>
                     <th>Precio Unitario</th>
                     <th>Tipo Venta</th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let producto of productoService.productos">
+                <tr *ngFor="let producto of productoService.productos | filter:filterPost">
                     <td>{{ producto.codigo }}</td>
                     <td>{{ producto.nombre }}</td>
                     <td>{{ producto.detalle }}</td>
-                    <td>{{ producto.cantidad }}</td>
+                    <td>{{ producto.stock }}</td>
                     <td>{{ producto.precioUnitario }}</td>
                     <td>{{ producto.tipoVenta }}</td>
 
@@ -28,7 +31,7 @@
                 </tr>
             </tbody>
         </table>
-        <button class="btn btn-primary m-2">Clean</button>
-        <button mat-button [mat-dialog-close]="productoService.productos" class="btn btn-secundary" (click)="sellProducto()">Save</button>
+        <button class="btn btn-primary m-2">Limpiar</button>
+        <button mat-button [mat-dialog-close]="productoService.productos" class="btn btn-secundary" (click)="sellProducto()">Guardar</button>
     </div>
 </div>

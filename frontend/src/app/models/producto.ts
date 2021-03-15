@@ -2,7 +2,7 @@ export interface producto {
     codigo: string
     nombre: string
     detalle: string
-    cantidad: Number
+    stock: Number
     precioUnitario: Number
     tipoVenta: string
     createAt?: String

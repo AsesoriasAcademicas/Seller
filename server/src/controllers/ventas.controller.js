@@ -48,6 +48,8 @@ ventas.createVenta = async(req, res) => {
         var producto = await Producto.findOne({ '_id': req.params.id });
         newVenta.producto = producto;
         await newVenta.save();
+        producto.stock = producto.stock - newVenta.cantidad;
+        await Producto.findByIdAndUpdate(req.params.id, { "stock": producto.stock });
         if (res.status(200)) {
             res.status(200).send({
                 status: "200",
@@ -158,6 +160,10 @@ ventas.updateVenta = async(req, res) => {
 
 ventas.deleteVenta = async(req, res) => {
     try {
+        var venta = await Venta.findById(req.params.id);
+        var producto = await Producto.findOne({ '_id': venta.producto });
+        producto.stock = producto.stock + venta.cantidad;
+        await Producto.findByIdAndUpdate(producto.id, { "stock": producto.stock });
         await Venta.findByIdAndDelete(req.params.id);
         res.status(200).send({
             status: "200",

@@ -16,6 +16,8 @@ export class ProductoComponent implements OnInit {
 
   public tipoVenta = ['Libra','Kilo','Unidad'];
 
+  filterPost = "";
+
   constructor(public productoService: ProductoService, public formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
@@ -26,7 +28,7 @@ export class ProductoComponent implements OnInit {
       codigo: ['', [Validators.required, Validators.pattern('^([a-zA-ZñÑáéíóúÁÉÍÓÚ0-9])*$')]],
       nombre: ['', [Validators.required, Validators.pattern('^([a-zA-ZñÑáéíóúÁÉÍÓÚ\\s])*$')]],
       detalle: ['', [Validators.required]],
-      cantidad: ['', [Validators.required, Validators.pattern('^([0-9])*$')]],
+      stock: ['', [Validators.required, Validators.pattern('^([0-9])*$')]],
       precioUnitario: ['', [Validators.required, Validators.pattern('^([0-9])*$')]],
       tipoVenta: ['', [Validators.required, Validators.pattern('^([a-zA-ZñÑáéíóúÁÉÍÓÚ\\s])*$')]]
     });

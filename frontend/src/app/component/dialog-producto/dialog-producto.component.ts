@@ -12,6 +12,8 @@ export class DialogProductoComponent implements OnInit {
 
   shoppingCart = [];
 
+  filterPost = "";
+
   constructor(public productoService: ProductoService) { }
 
   ngOnInit(): void {

@@ -34,10 +34,10 @@ POST http://localhost:4000/api/productos
 Content-Type: application/json
 
 {
-    "codigo": "ARROZCARO",
-    "nombre": "Arroz Carolina",
-    "detalle": "Arroz Carolina x lb",
-    "cantidad": "30",
+    "codigo": "ATUNISA",
+    "nombre": "Atún Isabel",
+    "detalle": "Atún Isabel lata x 150g",
+    "stock": "30",
     "precioUnitario": 1600,
     "tipoVenta": "libra"
 }
